@@ -11,16 +11,30 @@ const emailRoutes = require("./routes/emailRoutes");
 const authRoutes = require("./routes/authRoutes");
 const qrRoutes = require("./routes/qrRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-const verifiedUsersRoutes = require("./routes/verifiedUsers"); 
+const verifiedUsersRoutes = require("./routes/verifiedUsers");
 
 const app = express();
 app.use(express.json());
 
-// Middleware
-// app.use(cors());
-app.use(cors({
-  origin: ['https://your-vercel-app.vercel.app', 'http://localhost:5173']
-}));
+// ✅ CORS Configuration
+const allowedOrigins = [
+  "https://prisma-user-management.vercel.app",
+  "http://localhost:5173"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
+    credentials: true, // ✅ Allow cookies & authentication headers if needed
+  })
+);
+
 app.use(bodyParser.json());
 
 // ✅ Register Routes
@@ -28,25 +42,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api", qrRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/verifiedusers", verifiedUsersRoutes);
-app.use("/api/email", emailRoutes);  // ✅ Ensure Email Route is Active
+app.use("/api/email", emailRoutes); // ✅ Ensure Email Route is Active
 
 // ✅ MongoDB Connection
-const MONGO_URI = process.env.MONGO_URI ;
+const MONGO_URI = process.env.MONGO_URI;
 mongoose
-  .connect(MONGO_URI, { dbName: "qr-pass-system" }) 
+  .connect(MONGO_URI, { dbName: "qr-pass-system" })
   .then(() => console.log("✅ MongoDB Connected:", mongoose.connection.db.databaseName))
   .catch((err) => console.error("❌ MongoDB Connection Error:", err));
-
-// ✅ Debugging Verified Users Count
-// const VerifiedUsers = require("./models/VerifiedUser");
-// mongoose.connection.once("open", async () => {
-//   try {
-//     const usersCount = await VerifiedUsers.countDocuments();
-//     console.log(`📌 Total Verified Users: ${usersCount}`);
-//   } catch (error) {
-//     console.error("❌ Error Fetching Verified Users:", error);
-//   }
-// });
 
 // ✅ Authentication Setup
 const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";
