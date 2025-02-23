@@ -1,0 +1,93 @@
+/* Navbar.css */
+.navbar {
+    background: #333;
+    color: white;
+    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    position: relative; /* Ensures the icon positions correctly */
+}
+
+.nav-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* Hamburger Menu */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    display: none;
+    position: absolute;
+    right: 15px; /* Adjusted for better visibility */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100; /* Ensures it's always on top */
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    padding: 10px 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00bcd4;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        background: #222;
+        position: absolute;
+        top: 100%; /* Makes sure it's below the navbar */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links li {
+        padding: 10px;
+    }
+}

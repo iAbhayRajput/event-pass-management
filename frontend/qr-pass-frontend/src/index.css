@@ -1,0 +1,45 @@
+:root {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #1db954;
+  --secondary-color: #292929;
+}
+
+/* src/index.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Dark Theme */
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+button {
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d6efd;
+}
+
+.custom-btn {
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.custom-btn:hover {
+  background-color: #0d6efd;
+}
