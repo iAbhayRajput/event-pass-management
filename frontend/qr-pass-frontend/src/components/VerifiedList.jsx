@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const VerifiedList = () => {
   const [users, setUsers] = useState([]); // Ensure it's an array
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/verifiedusers") // Ensure the endpoint is correct
+      .get('${backendUrl}/api/verifiedusers') // Ensure the endpoint is correct
       .then((res) => {
         console.log("Fetched users:", res.data); // Debugging
         setUsers(res.data);

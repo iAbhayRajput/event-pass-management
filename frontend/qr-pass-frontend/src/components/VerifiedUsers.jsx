@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./VerifiedUsers.css";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const VerifiedUsers = () => {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,7 +10,7 @@ const VerifiedUsers = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/verifiedusers")
+      .get(`${backendUrl}/api/verifiedusers`)
       .then((res) => {
         console.log("Fetched users:", res.data);
         setUsers(res.data);
@@ -34,7 +35,7 @@ const VerifiedUsers = () => {
     if (!confirmChange) return;
 
     axios
-      .put(`http://localhost:5000/api/verifiedusers/update/${userId}`, { [field]: !currentValue })
+      .put(`${backendUrl}/api/verifiedusers/update/${userId}`, { [field]: !currentValue })
       .then((res) => {
         setUsers(users.map(user => 
           user._id === userId ? { ...user, [field]: !currentValue } : user

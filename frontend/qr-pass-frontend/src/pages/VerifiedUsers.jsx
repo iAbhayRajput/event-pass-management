@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./VerifiedUsers.css"; // Import the styles
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const VerifiedUsers = () => {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/verifiedusers")
+    axios.get("backendUrl/api/verifiedusers")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);

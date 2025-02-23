@@ -36,7 +36,7 @@ router.post("/validateQR", async (req, res) => {
         // ✅ Construct the welcome message
         const welcomeMessage = `Welcome, ${user.userName}!\nNumber of persons: ${user.numberOfPasses}\n`;
 
-        if (currentDay === 23) {
+        if (currentDay === 24) {
             // ✅ First Day Check
             if (user.isUsed1) {
                 return res.status(400).json({ message: `${welcomeMessage}❌ Pass already used for Day 1.` });

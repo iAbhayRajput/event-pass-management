@@ -1,0 +1,80 @@
+/* Center the login form on the page */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212; /* Dark background */
+    color: white;
+}
+
+/* Login form styling */
+.login-container h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 300px;
+}
+
+/* Input fields */
+input {
+    background: #2c2c2c;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #4caf50; /* Green highlight */
+}
+
+/* Submit button */
+button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+/* Error message */
+.error {
+    color: #ff4d4d;
+    background: #2c0000;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+    }
+}

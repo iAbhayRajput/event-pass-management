@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      await axios.post('${backendUrl}/api/auth/login', { email, password });
       alert("Login Successful");
     } catch (error) {
       alert("Invalid Credentials");
