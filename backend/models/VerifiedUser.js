@@ -14,14 +14,15 @@ const verifiedUserSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   emailId: { type: String, required: true },
   numberOfPasses: { type: Number, required: true },
-  uniqueCode: { type: Number, unique: true }, // Auto-incremented
-  amount: { type: Number, required: true }, // Multiple of 1000
+  uniqueCode: { type: Number, unique: true },
+  amount: { type: Number, required: true },
   purchaseDate: { type: Date, required: true },
-  idProofImage: { type: String, required: true }, // Base64 Image
+  idProofImage: { type: String, required: true },
   uploadDate: { type: Date, required: true },
   isUsed1: { type: Boolean, default: false },
   isUsed2: { type: Boolean, default: false },
   isAlreadyPaid: { type: Boolean, default: true },
+  emailed: { type: Boolean, default: false },  // ✅ New field added
   uuid: {
     type: Number,
     required: true,
@@ -29,6 +30,7 @@ const verifiedUserSchema = new mongoose.Schema({
     default: () => Math.floor(1000000 + Math.random() * 9000000).toString(),
   },
 });
+
 
 // Pre-save hook to auto-increment `uniqueCode`
 verifiedUserSchema.pre("save", async function (next) {

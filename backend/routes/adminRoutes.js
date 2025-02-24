@@ -28,4 +28,18 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
+router.put("/verifiedusers/:id/toggle-emailed", async (req, res) => {
+  try {
+    const user = await VerifiedUser.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    user.emailed = !user.emailed; // Toggle the boolean value
+    await user.save();
+    
+    res.json({ success: true, emailed: user.emailed });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update emailed status" });
+  }
+});
+
 module.exports = router;

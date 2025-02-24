@@ -21,8 +21,8 @@ const sendEmail = async (user) => {
         // Email content
         const emailHtml = `
         <div style="text-align: center; background: black; color: white; padding: 20px; border: 2px solid red; max-width: 400px; margin: auto; border-radius: 10px;">
-            <h1 style="color: red;">Welcome to Prisma</h1>
-            <p>Your unique pass is here...</p>
+            <h1 style="color: red;">Welcome to PRISMA 2k25</h1>
+            <p>Your unique E-Pass is here...</p>
 
             <div style="text-align: left; padding: 10px; background: #2a2a2a; border-radius: 5px;">
                 <p><strong>Name:</strong> ${user.userName}</p>
@@ -35,11 +35,16 @@ const sendEmail = async (user) => {
             </div>
 
             <p><strong>Note:</strong> This QR code is valid for both <b>February 28th and March 1st</b>. Please keep it safe, as it will be required for entry.</p>
-            <p style="color: orange;"><strong>Important:</strong> Please do not attempt to alter or manipulate the QR code.</p>
+            <p style="color: orange;">
+                <strong>Important:</strong> Please do not attempt to alter or manipulate the QR code. 
+                <br><br>
+                <strong>⚠ Before arriving at PRISMA, please make sure to <a href="https://drive.google.com/drive/folders/1utdznaBQCKvhprUScxm_U36y3umpzn7I?usp=sharing" style="color: yellow; text-decoration: underline;">read the official guidelines</a>. Failure to comply may result in entry restrictions.</strong>
+            </p>
 
             <p style="font-size: 12px; color: gray;">This is an auto-generated email. <strong>Do not reply.</strong><br>Regards,<br>Prisma Team</p>
         </div>
         `;
+
 
         const mailOptions = {
             from: "srmuhprisma@gmail.com",
