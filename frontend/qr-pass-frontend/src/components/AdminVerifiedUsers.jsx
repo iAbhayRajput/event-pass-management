@@ -62,6 +62,10 @@ const AdminVerifiedUsers = () => {
     }, 180000); // 3 minutes interval (180,000 ms)
   };
 
+  const openEmailPreview = (userId) => {
+    window.open(`/email-preview/${userId}`, "_blank"); // Opens EmailPreview in a new tab
+  };
+
   if (loading) return <p>Loading users...</p>;
 
   return (
@@ -81,6 +85,39 @@ const AdminVerifiedUsers = () => {
         {sending ? "Sending Emails..." : "Send Emails"}
       </button>
       <p>{sending ? "Emails are being sent. Please wait..." : "Click to send emails to all unnotified users."}</p>
+
+      <div style={{ overflowX: "auto", marginTop: "20px" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr style={{ backgroundColor: "#333", color: "white" }}>
+              <th style={{ padding: "10px", border: "1px solid white" }}>Name</th>
+              <th style={{ padding: "10px", border: "1px solid white" }}>Email</th>
+              <th style={{ padding: "10px", border: "1px solid white" }}>Unique Code</th>
+              <th style={{ padding: "10px", border: "1px solid white" }}>Emailed</th>
+              <th style={{ padding: "10px", border: "1px solid white" }}>Preview</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user._id} style={{ backgroundColor: user.emailed ? "#a3e635" : "#f87171" }}>
+                <td style={{ padding: "10px", border: "1px solid black" }}>{user.userName}</td>
+                <td style={{ padding: "10px", border: "1px solid black" }}>{user.emailId}</td>
+                <td style={{ padding: "10px", border: "1px solid black" }}>{user.uniqueCode}</td>
+                <td style={{ padding: "10px", border: "1px solid black" }}>
+                  {user.emailed ? "✅ Sent" : "❌ Not Sent"}
+                </td>
+                <td style={{ padding: "10px", border: "1px solid black" }}>
+                  <button 
+                    onClick={() => openEmailPreview(user._id)} 
+                    style={{ padding: "5px 10px", background: "blue", color: "white", border: "none", borderRadius: "5px" }}>
+                    Preview Email
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
