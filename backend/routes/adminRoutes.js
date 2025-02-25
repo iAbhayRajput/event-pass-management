@@ -42,4 +42,16 @@ router.put("/verifiedusers/:id/toggle-emailed", async (req, res) => {
   }
 });
 
+router.put("/verifiedusers/:id", async (req, res) => { 
+  try {
+    const { id } = req.params;
+    await VerifiedUser.findByIdAndUpdate(id, { emailed: true });
+    res.json({ success: true, message: "User marked as emailed." });
+  } catch (error) {
+    console.error("❌ Error updating user:", error);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+});
+
+
 module.exports = router;
