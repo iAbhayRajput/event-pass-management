@@ -56,9 +56,9 @@ const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";
 const users = [
   { username: "admin", password: bcrypt.hashSync("Admin@123", 10) },
   { username: "user1", password: bcrypt.hashSync("User1@pass", 10) },
-  { username: "user2", password: bcrypt.hashSync("User2@pass", 10) },
-  { username: "user3", password: bcrypt.hashSync("User3@pass", 10) },
-  { username: "user4", password: bcrypt.hashSync("User4@pass", 10) },
+  { username: "user2", password: bcrypt.hashSync("User2#pafZ", 10) },
+  { username: "user3", password: bcrypt.hashSync("User3$scBs", 10) },
+  { username: "user4", password: bcrypt.hashSync("User4*NvxJ", 10) },
 ];
 
 // ✅ Middleware to Check JWT Token
