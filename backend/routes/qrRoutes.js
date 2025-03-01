@@ -42,7 +42,7 @@ router.post("/validateQR", async (req, res) => {
                 return res.status(400).json({ message: `${welcomeMessage}❌ Pass already used for Day 1.` });
             }
             user.isUsed1 = true;
-        } else if (currentDay === 1) {
+        } else if (currentDay === 28||1) {
             // ✅ Second Day Check
             if (user.isUsed2) {
                 return res.status(400).json({ message: `${welcomeMessage}❌ Pass already used for Day 2.` });
