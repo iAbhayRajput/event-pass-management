@@ -4,8 +4,6 @@ const crypto = require("crypto");
 const VerifiedUser = require("../models/VerifiedUser"); // Adjust based on your project
 const CryptoJS = require("crypto-js");
 
-const SECRET_KEY = "your_secret_key"; // Ensure consistency with frontend encryption
-
 router.post("/validateQR", async (req, res) => {
     try {
         const { encryptedQR, eventDay } = req.body;
